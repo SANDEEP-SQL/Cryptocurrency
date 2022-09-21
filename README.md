@@ -1,31 +1,5 @@
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
 
 # Step 1 - Introduction
-
-## Our Database
-
-All of our data lives within a PostgreSQL database and contains a single schema called `trading`.
-
-In PostgreSQL, a database can contain multiple schemas, and a schema is a collection of tables and other database objects.
-
-## Copy and Run a SQL Query
-
-To run our first query together - you can click on the right hand corner of the following code snippet below to copy a basic `SELECT` query to your clipboard.
-
-You can then paste it into your SQLPad interface and click on the `Run` button in the top right corner or hit `cmd` + `enter` on Mac or `control` + `enter` on Windows to run the query.
-
-```sql
-SELECT * FROM trading.members;
-```
-
-This `SELECT` query above will return all of the records from the `members` table inside the `trading` schema.
 
 # Our Crypto Case Study
 
@@ -72,7 +46,7 @@ SELECT * FROM trading.members;
 <br>
 
 ```sql
-SELECT * FROM trading.prices LIMIT 5;
+SELECT TOP 5 * FROM trading.prices;
 ```
 
 | ticker | market_date |  price  |  open   |  high   |   low   | volume  | change |
@@ -85,7 +59,7 @@ SELECT * FROM trading.prices LIMIT 5;
 <br>
 
 ```sql
-SELECT * FROM trading.transactions LIMIT 5;
+SELECT TOP 5 * FROM trading.transactions;
 ```
 
 | txn_id | member_id | ticker |  txn_date  | txn_type | quantity | percentage_fee |      txn_time       |
@@ -97,7 +71,7 @@ SELECT * FROM trading.transactions LIMIT 5;
 |      5 | 167909    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
 
 
-Note: the `LIMIT 5` in the above queries will return us only the first 5 rows from each dataset.
+Note: the `TOP 5` in the above queries will return us only the first 5 rows from each dataset.
 
 It is a good practice to always `LIMIT` your queries just in case the tables are huge - you don't want to be trying to return all 5 million rows from a huge table when you are just inspecting the data for the first time!
 
