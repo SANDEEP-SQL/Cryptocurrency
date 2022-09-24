@@ -198,7 +198,7 @@ Our next dataset to explore will be the `trading.prices` table which contains th
 
 > How many total records do we have in the `trading.prices` table?
 
-<details>
+
   
 
 
@@ -220,7 +220,7 @@ FROM trading.prices;
 
 > How many records are there per `ticker` value?
 
-<details>
+
   
 
 
@@ -245,7 +245,7 @@ GROUP BY ticker;
 
 > What is the minimum and maximum `market_date` values?
 
-<details>
+
   
 
 
@@ -268,7 +268,7 @@ FROM trading.prices;
 
 > Are there differences in the minimum and maximum `market_date` values for each ticker?
 
-<details>
+
   
 
 
@@ -294,7 +294,7 @@ GROUP BY ticker;
 
 > What is the average of the `price` column for Bitcoin records during the year 2020?
 
-<details>
+
   
 
 
@@ -359,7 +359,7 @@ ORDER BY month_start;
 
 As you inspect the output from the following SQL query - what is your final answer?
 
-<details>
+
   
 
 
@@ -385,7 +385,7 @@ GROUP BY ticker;
 
 > How many days from the `trading.prices` table exist where the `high` price of Bitcoin is over $30,000?
 
-<details>
+
   
 
 
@@ -409,7 +409,7 @@ WHERE ticker = 'BTC'
 
 > How many "breakout" days were there in 2020 where the `price` column is greater than the `open` column for each `ticker`?
 
-<details>
+
   
 
 
@@ -435,7 +435,7 @@ GROUP BY ticker;
 
 > How many "non_breakout" days were there in 2020 where the `price` column is less than the `open` column for each `ticker`?
 
-<details>
+
   
 
 
@@ -462,7 +462,7 @@ GROUP BY ticker;
 
 > What percentage of days in 2020 were breakout days vs non-breakout days? Round the percentages to 2 decimal places
 
-<details>
+
   
 
 
@@ -530,7 +530,7 @@ Let's finish our initial data exploration with a few more questions for the `tra
 
 > How many records are there in the `trading.transactions` table?
 
-<details>
+
   
 
 
@@ -545,7 +545,7 @@ SELECT COUNT(*) FROM trading.transactions;
 
 > How many unique transactions are there?
 
-<details>
+
   
 
 
@@ -565,7 +565,7 @@ SELECT COUNT(DISTINCT txn_id) FROM trading.transactions;
 
 > How many buy and sell transactions are there for Bitcoin?
 
-<details>
+
   
 
 
@@ -597,7 +597,7 @@ GROUP BY txn_type;
 
 Also round the quantity columns to 2 decimal places.
 
-<details>
+
   
 
 
@@ -635,7 +635,7 @@ ORDER BY txn_year, txn_type;
 
 > What was the monthly total quantity purchased and sold for Ethereum in 2020?
 
-<details>
+
   
 
 
@@ -679,7 +679,7 @@ ORDER BY calendar_month;
 * Ethereum buy quantity
 * Ethereum sell quantity
 
-<details>
+
   
 
 
@@ -739,7 +739,7 @@ GROUP BY member_id;
 
 > What was the final quantity holding of Bitcoin for each member? Sort the output from the highest BTC holding to lowest
 
-<details>
+
   
 
 
@@ -786,7 +786,7 @@ ORDER BY final_btc_holding DESC;
 
 We can actually do this in 3 different ways!
 
-<details>
+
   <summary>Click here to reveal the `HAVING` solution!</summary>
 
 
@@ -805,7 +805,7 @@ ORDER BY btc_sold_quantity DESC;
 
 
 
-<details>
+
   <summary>Click here to reveal the `CTE` solution!</summary>
 
 
@@ -827,7 +827,7 @@ ORDER BY btc_sold_quantity DESC;
 
 
 
-<details>
+
   <summary>Click here to reveal the `subquery` solution!</summary>
 
 
@@ -859,7 +859,7 @@ ORDER BY btc_sold_quantity DESC;
 
  > What is the total Bitcoin quantity for each `member_id` owns after adding all of the BUY and SELL transactions from the `transactions` table? Sort the output by descending total quantity
 
-<details>
+
   
 
 
@@ -903,10 +903,6 @@ ORDER BY total_quantity DESC;
 
 > Which `member_id` has the highest buy to sell ratio by quantity?
 
-<details>
-  
-
-
 ```sql
 SELECT
   member_id,
@@ -916,9 +912,6 @@ FROM trading.transactions
 GROUP BY member_id
 ORDER BY buy_to_sell_ratio DESC;
 ```
-
-
-
 
 | member_id |  buy_to_sell_ratio   |
 | --------- | -------------------- |
@@ -942,7 +935,7 @@ ORDER BY buy_to_sell_ratio DESC;
 
 > For each `member_id` - which month had the highest total Ethereum quantity sold`?
 
-<details>
+
   
 
 
@@ -1517,7 +1510,7 @@ Now that we've obtained our base table properly - let's start answering some of 
 
 Before running any of the solution queries below for this tutorial's questions - you can run the entire SQL prep queries directly below!
 
-<details><summary>Click here to reveal the entire data prep SQL script!</summary>
+<summary>Click here to reveal the entire data prep SQL script!</summary>
 
 ```sql
 DROP TABLE IF EXISTS temp_portfolio_base;
@@ -1562,8 +1555,6 @@ SELECT
 FROM temp_portfolio_base;
 ```
 
-
-
 Here is the ERD diagram below just in case you forgot about how all the tables are joined together!
 
 ## Question 1
@@ -1573,7 +1564,6 @@ Here is the ERD diagram below just in case you forgot about how all the tables a
 We can now inner join our `trading.prices` table (I hope you haven't forgot about this one yet!) to our new temp table `temp_cumulative_portfolio_base`
 
 Let's also order our results by highest portfolio value to lowest rounded to 2 decimal places.
-
 
 
 ```sql
@@ -1714,8 +1704,6 @@ ORDER BY region_total DESC, contribution_percentage DESC;
 
 We can use a similar approach to question 3 - but we will need to avoid the first level of aggregation.
 
-
-
 ```sql
 WITH cte_mentor_portfolio AS (
   SELECT
@@ -1808,7 +1796,6 @@ The final output we wish to generate looks like this:
 Our first step is to try and create a long table first with all of our ranks for each ticker and year end.
 
 
-
 ```sql
 SELECT
   year_end,
@@ -1824,11 +1811,7 @@ WHERE region IN ('United States', 'Australia')
 ORDER BY year_end, region, ranking;
 ```
 
-
-
 Let's now pivote this long table to a slightly easier to read wide table
-
-
 
 ```sql
 WITH cte_ranks AS (
@@ -1938,7 +1921,6 @@ We can calculate the first 2 questions using a single query
 > 2. The dollar amount of fees she paid for those 2 transactions
 
 
-
 ```sql
 SELECT
   SUM(transactions.quantity * prices.price) AS initial_value,
@@ -1970,7 +1952,6 @@ INNER JOIN trading.prices
   ON transactions.ticker = prices.ticker
 WHERE prices.market_date = '2021-08-29';
 ```
-
 
 
 | final_value |
@@ -2088,8 +2069,6 @@ INNER JOIN trading.prices
   AND transactions.txn_date = prices.market_date;
 ```
 
-
-
 |     initial_investment      |            fees             |
 | --------------------------- | --------------------------- |
 | 50730451.023400136384298882 | 128821.14163246531801672694 |
@@ -2098,8 +2077,6 @@ INNER JOIN trading.prices
 ### Question 3
 
 > What is the average cost per unit of BTC and ETH purchased by Vikram
-
-
 
 ```sql
 WITH cte_portfolio AS (
@@ -2119,8 +2096,6 @@ SELECT
 FROM cte_portfolio;
 ```
 
-
-
 | ticker |   dollar_cost_average   |
 | ------ | ----------------------- |
 | BTC    | 12190.13846337579877423 |
@@ -2130,8 +2105,6 @@ FROM cte_portfolio;
 ### Question 4
 
 > Calculate profitability by using final portfolio value divided by the investment amount
-
-
 
 ```sql
 WITH cte_portfolio_values AS (
@@ -2150,8 +2123,6 @@ SELECT
   final_value / initial_investment AS profitability
 FROM cte_portfolio_values;
 ```
-
-
 
 |    profitability     |
 | -------------------- |
@@ -2184,8 +2155,6 @@ SELECT
 FROM cte_ticker_portfolio_values;
 ```
 
-
-
 | ticker |    profitability     |
 | ------ | -------------------- |
 | BTC    |  3.95852763649714995 |
@@ -2195,8 +2164,6 @@ FROM cte_ticker_portfolio_values;
 # Step 11 - The Trader Strategy
 
 # Scenario 3: The Trader
-
-![trader](assets/trader.jpeg)
 
 Nandita is the Queen of crypto trading - she wants to follow the popular trader's adage of **BUY LOW, SELL HIGH**
 
@@ -2267,7 +2234,6 @@ We also want to calculate the difference if Nandita didn't sell any of her crypt
 > * Dollar cost average of purchases
 
 
-
 ```sql
 WITH cte_purchases AS (
   SELECT
@@ -2293,8 +2259,6 @@ SELECT
 FROM cte_purchases;
 ```
 
-
-
 | ticker | purchase_count |    purchase_quantity    |      initial_investment      |        purchase_fees         |    dollar_cost_average    |
 | ------ | -------------- | ----------------------- | ---------------------------- | ---------------------------- | ------------------------- |
 | BTC    |            954 | 5023.705687783492459935 | 63735345.6973630892576024850 | 162919.943377863222128081502 | 12686.9187126851255182628 |
@@ -2309,7 +2273,6 @@ FROM cte_purchases;
 > * Gross revenue amount
 > * Sales fees
 > * Average selling price
-
 
 
 ```sql
@@ -2336,8 +2299,6 @@ SELECT
   gross_revenue / sales_quantity AS average_selling_price
 FROM cte_sales;
 ```
-
-
 
 | ticker | sales_count |    sales_quantity    |       gross_revenue        |         sales_fees         |  average_selling_price  |
 | ------ | ----------- | -------------------- | -------------------------- | -------------------------- | ----------------------- |
