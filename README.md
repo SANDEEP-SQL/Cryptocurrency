@@ -3,9 +3,7 @@
 ![image](https://github.com/Shailesh-python/Cryptocurrency/blob/main/sql-masterclas-banner.png)
 
 ---
-The following are my solutions to the Cryptocurrency questions in 
-[Danny Ma's Cryptocurrency]("https://github.com/DataWithDanny/sql-masterclass")
-[Danny Ma's Serious SQL course](https://www.datawithdanny.com/ "Data With Danny")
+The following are my solutions to the Cryptocurrency questions in [Danny Ma's Cryptocurrency]("https://github.com/DataWithDanny/sql-masterclass")
 
 # Step 1 - Introduction
 
@@ -3025,3 +3023,9 @@ WHERE investment_rank = 1;
 | Leah       | BTC    | 64922183.350145074994503074 |               1 |
 | Vipul      | ETH    | 2900193.5795488220132164898 |               1 |
 <br>
+
+ ---
+ 
+Check out the [Danny Ma's Serious SQL course](https://www.datawithdanny.com/ "Data With Danny")
+  
+ ---
