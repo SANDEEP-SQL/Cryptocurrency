@@ -742,119 +742,8 @@ GROUP BY ticker;
 | ETH    |                0.55 |                    0.45 |
 <br>
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step2.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step4.md)
-
-# Appendix
-
-> Date Manipulations
-
-We use a variety of date manipulations in questions [5](#question-5), [6](#question-6), [9](#question-9) and [11](#question-11) to filter the `trading.prices` for 2020 values only.
-
-These are all valid methods to qualify `DATE` or `TIMESTAMP` values within a range using a `WHERE` filter:
-
-* `market_date BETWEEN '2020-01-01' AND '2020-12-31'`
-* `EXTRACT(YEAR FROM market_date) = 2020`
-* `DATE_TRUNC('YEAR', market_date) = '2020-01-01'`
-* `market_date >= '2020-01-01' AND market_date <= '2020-12-31'`
-
-The only additional thing to note is that `DATE_TRUNC` returns a `TIMESTAMP` data type which can be cast back to a regular `DATE` using the `::DATE` notation when used in a `SELECT` query.
-
-> `BETWEEN` Boundaries
-
-An additional note for [question 5](#question-5) - the boundaries for the `BETWEEN` clause must be `earlier-date-first` AND `later-date-second`
-
-See what happens when you reverse the order of the `DATE` boundaries using the query below - does it match your expectation?
-
-<details>
-  <summary>Click here to see the "wrong" code!</summary>
-<br>
-
-```sql
-SELECT
-  AVG(price)
-FROM trading.prices
-WHERE ticker = 'BTC'
-  AND market_date BETWEEN '2020-12-31' AND '2020-01-01';
-```
-
-</details>
-<br>
-
-> Rounding Floats/Doubles
-
-In PostgreSQL - we cannot apply the `ROUND` function directly to approximate `FLOAT` or `DOUBLE PRECISION` data types.
-
-Instead we will need to cast any outputs from functions such as `AVG` to an exact `NUMERIC` data type before we can use it with other approximation functions such as `ROUND`
-
-In [question 6](#question-6) - if we were to remove our `::NUMERIC` from our query - we would run into this error:
-
-```
-ERROR:  function round(double precision, integer) does not exist
-LINE 3:   ROUND(AVG(price), 2) AS average_eth_price
-          ^
-HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
-```
-
-You can try this yourself by running the below code snippet with the `::NUMERIC` removed:
-
-<details>
-  <summary>Click here to see the "wrong" code!</summary>
-<br>
-
-```sql
-SELECT
-  DATE_TRUNC('MON', market_date) AS month_start,
-  ROUND(AVG(price), 2) AS average_eth_price
-FROM trading.prices
-WHERE EXTRACT(YEAR FROM market_date) = 2020
-GROUP BY month_start
-ORDER BY month_start;
-```
-
-</details>
-<br>
-
-> Integer Floor Division
-
-In [question 5](#question-5) - when dividing values in SQL it is very important to consider the data types of the numerator (the number on top) and the denominator (the number on the bottom)
-
-When there is an `INTEGER` / `INTEGER` as there is in this case - SQL will default to `FLOOR` division in this case!
-
-You can try running the same query as the solution to question 5 above - but this time remove the 2 instances of `::NUMERIC` and the decimal place rounding to see what happens!
-
-This is a super common error found in SQL queries and we usually recommend casting either the numerator or the denominator as a `NUMERIC` type using the shorthand `::NUMERIC` syntax to ensure that you will avoid the dreaded integer floor division!
-
-<details>
-  <summary>Click here to see the "wrong" code!</summary>
-<br>
-
-```sql
-SELECT
-  ticker,
-  SUM(CASE WHEN price > open THEN 1 ELSE 0 END) / COUNT(*) AS breakout_percentage,
-  SUM(CASE WHEN price < open THEN 1 ELSE 0 END) / COUNT(*) AS non_breakout_percentage
-FROM trading.prices
-WHERE market_date >= '2019-01-01' AND market_date <= '2019-12-31'
-GROUP BY ticker;
-```
-
-</details>
-<br>
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
+ 
 # Step 4 - Transactions Table
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step3.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step5.md)
 
 In our third `trading.transactions` database table we have each `BUY` or `SELL` transaction for a specific `ticker` performed by each `member`
 
@@ -863,10 +752,9 @@ In our third `trading.transactions` database table we have each `BUY` or `SELL` 
 You can inspect the most recent 10 transactions by `member_id = 'c4ca42'` (do you remember who that is?)
 
 ```sql
-SELECT * FROM trading.transactions
+SELECT TOP 10 * FROM trading.transactions
 WHERE member_id = 'c4ca42'
-ORDER BY txn_time DESC
-LIMIT 10;
+ORDER BY txn_time DESC;
 ```
 
 ## Data Dictionary
