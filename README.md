@@ -3,6 +3,9 @@
 ![image](https://github.com/Shailesh-python/Cryptocurrency/blob/main/sql-masterclas-banner.png)
 
 ---
+The following are my solutions to the Cryptocurrency questions in 
+[Danny Ma's Cryptocurrency]("https://github.com/DataWithDanny/sql-masterclass")
+[Danny Ma's Serious SQL course](https://www.datawithdanny.com/ "Data With Danny")
 
 # Step 1 - Introduction
 
