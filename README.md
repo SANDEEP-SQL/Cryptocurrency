@@ -199,7 +199,7 @@ Our next dataset to explore will be the `trading.prices` table which contains th
 > How many total records do we have in the `trading.prices` table?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -221,7 +221,7 @@ FROM trading.prices;
 > How many records are there per `ticker` value?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -246,7 +246,7 @@ GROUP BY ticker;
 > What is the minimum and maximum `market_date` values?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -269,7 +269,7 @@ FROM trading.prices;
 > Are there differences in the minimum and maximum `market_date` values for each ticker?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -295,7 +295,7 @@ GROUP BY ticker;
 > What is the average of the `price` column for Bitcoin records during the year 2020?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -360,7 +360,7 @@ ORDER BY month_start;
 As you inspect the output from the following SQL query - what is your final answer?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -386,7 +386,7 @@ GROUP BY ticker;
 > How many days from the `trading.prices` table exist where the `high` price of Bitcoin is over $30,000?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -410,7 +410,7 @@ WHERE ticker = 'BTC'
 > How many "breakout" days were there in 2020 where the `price` column is greater than the `open` column for each `ticker`?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -436,7 +436,7 @@ GROUP BY ticker;
 > How many "non_breakout" days were there in 2020 where the `price` column is less than the `open` column for each `ticker`?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -463,7 +463,7 @@ GROUP BY ticker;
 > What percentage of days in 2020 were breakout days vs non-breakout days? Round the percentages to 2 decimal places
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -531,7 +531,7 @@ Let's finish our initial data exploration with a few more questions for the `tra
 > How many records are there in the `trading.transactions` table?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -546,7 +546,7 @@ SELECT COUNT(*) FROM trading.transactions;
 > How many unique transactions are there?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -566,7 +566,7 @@ SELECT COUNT(DISTINCT txn_id) FROM trading.transactions;
 > How many buy and sell transactions are there for Bitcoin?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -598,7 +598,7 @@ GROUP BY txn_type;
 Also round the quantity columns to 2 decimal places.
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -636,7 +636,7 @@ ORDER BY txn_year, txn_type;
 > What was the monthly total quantity purchased and sold for Ethereum in 2020?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -680,7 +680,7 @@ ORDER BY calendar_month;
 * Ethereum sell quantity
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -740,7 +740,7 @@ GROUP BY member_id;
 > What was the final quantity holding of Bitcoin for each member? Sort the output from the highest BTC holding to lowest
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -860,7 +860,7 @@ ORDER BY btc_sold_quantity DESC;
  > What is the total Bitcoin quantity for each `member_id` owns after adding all of the BUY and SELL transactions from the `transactions` table? Sort the output by descending total quantity
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -904,7 +904,7 @@ ORDER BY total_quantity DESC;
 > Which `member_id` has the highest buy to sell ratio by quantity?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
@@ -943,7 +943,7 @@ ORDER BY buy_to_sell_ratio DESC;
 > For each `member_id` - which month had the highest total Ethereum quantity sold`?
 
 <details>
-  <summary>Click here to reveal the solution!</summary>
+  
 
 
 ```sql
