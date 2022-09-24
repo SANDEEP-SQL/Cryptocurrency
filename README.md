@@ -1235,22 +1235,8 @@ ORDER BY sold_eth_quantity DESC;
 | 45c48c    | 2020-01-01     |   20.21523406425370 |
 | c9f0f8    | 2020-11-01     |  15.931855129247867 |
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step3.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step5.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
 
 # Step 5 - Let the Data Analysis Begin!
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step4.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step6.md)
 
 Now that we've explored all 3 of our tables - let's try to first visualize how each of the tables are joined onto eachother using an Entity Relationship Diagram or ERD for short!
 
@@ -1259,8 +1245,6 @@ Now that we've explored all 3 of our tables - let's try to first visualize how e
 ERDs are very useful to visualize the relationships between columns in tables - especially when it comes to combining them together using tables joins (something we'll cover in this current tutorial)
 
 Below you will see the ERD for our current case study - the most important thing is to notice how all of the columns relate to one another.
-
-![Crypto Case Study ERD](assets/crypto-erd.png)
 
 # Realistic Analytics
 
@@ -1500,22 +1484,8 @@ ORDER BY avg_ethereum_value DESC;
 | Africa        |  2183933.3382704268238606128 |            1 |  2183933.3382704268238606128 |
 <br>
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step4.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step6.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
 
 # Step 6 - Planning Ahead for Data Analysis
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step5.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step7.md)
 
 # Planning Ahead
 
@@ -1790,22 +1760,7 @@ SELECT * FROM temp_cumulative_portfolio_base LIMIT 20;
 
 Now that we've obtained our base table properly - let's start answering some of these questions!
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step5.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step7.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 7 - Answering Data Questions
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step6.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step8.md)
 
 # Answering the Questions
 
@@ -1859,8 +1814,6 @@ FROM temp_portfolio_base;
 </details><br>
 
 Here is the ERD diagram below just in case you forgot about how all the tables are joined together!
-
-![Crypto Case Study ERD](assets/crypto-erd.png)
 
 ## Question 1
 
@@ -2156,24 +2109,8 @@ GROUP BY region, first_name
 ORDER BY region, "BTC 2017";
 ```
 
-</details><br>
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step6.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step8.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 8 - The Final Case Study
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step7.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step9.md)
 
 Now that we've tackled a more complicated series of questions - let's take it to the next level!
 
@@ -2191,24 +2128,8 @@ Often when faced with a difficult problem like we have right now - the first ste
 
 In the next 3 steps - we will cover each strategy by simplifying our existing `trading.transactions` table to answer more questions!
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step7.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step9.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 9 - Buy and Hold Analysis
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step8.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step10.md)
-
-![hodl](assets/hodl.jpeg)
 
 Meet Leah - she is our mentor who will take the buy and hold strategy otherwise known as the "HODL strategy" or hold on for dear life!
 
@@ -2344,24 +2265,7 @@ FROM cte_portfolio_values;
 |      50180.00 | 150.5400000000000000 |  2571642.00 | 51.2483459545635711 |
 <br>
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step8.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step10.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 10 - The Bull Strategy
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step9.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step11.md)
-
-![bull](assets/bull.jpeg)
 
 Vikram is also similar to Leah but purchases Bitcoin frequently because he believes the price will go up in the future!
 
@@ -2537,22 +2441,7 @@ FROM cte_ticker_portfolio_values;
 | ETH    | 5.902354477110731653 |
 <br>
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step9.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step11.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 11 - The Trader Strategy
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step10.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step12.md)
 
 # Scenario 3: The Trader
 
@@ -2833,22 +2722,7 @@ FROM cte_metrics;
 | ETH    |   11134790.869485909819250128 |  4.94126554503705553061 |    5.30805715638391209991 |    598.397257883758534604 |  542.484898862480594053 |  172591.915512909206341725 |    5783.32678170688531189239 |   447.93810830446683009024 |   2287096.578215583047801140 |   3822.0371970017654265 | 318.1506358514526923 |                   756 |                 70 |
 <br>
 
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step10.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step12.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
 # Step 12 - Final Case Study Questions
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step11.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step13.md)
 
 To finish up our entire cryptocurrency case study - let's now calculate exactly the same query that we just created for Nandita's data with our entire dataset with all mentors included!
 
@@ -3143,84 +3017,3 @@ WHERE investment_rank = 1;
 | Leah       | BTC    | 64922183.350145074994503074 |               1 |
 | Vipul      | ETH    | 2900193.5795488220132164898 |               1 |
 <br>
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step11.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step13.md)
-
-<p align="center">
-    <img src="./../images/sql-masterclas-banner.png" alt="sql-masterclass-banner">
-</p>
-
-[![forthebadge](./../images/badges/version-1.0.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
-[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)]()
-
-# SQL Masterclass Summary
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step12.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/the-end.md)
-
-Congratulations you have reached the end of this SQL Masterclass!
-
-Here are some of the topics which you covered in this short but sweet SQL Masterclass course:
-
-> Step 2: Inspecting the `trading.members` table
-
-* Selecting rows and columns from database tables with `SELECT`
-* Use `LIMIT` to only return a set number of rows from a query
-* Counting the number of records using `COUNT(*)`
-* Counting the number of unique column and table records using `COUNT(DISTINCT)
-* Filtering data using a `WHERE` filter
-* Selecting `DATE` ranges using `BETWEEN`, `>`, `>=`, `<`, `<=`
-* Using the `IN` and `NOT IN` filter conditions to remove and keep records
-* Use `CASE WHEN` to apply simple if-else logic to an existing column
-
-> Step 3: Analyzing daily BTC and ETH prices in the `trading.prices` table
-
-* Finding the `MIN` and `MAX` dates
-* Use `GROUP BY` to aggregate data at different levels for analysis
-* Extracting information from dates using `DATE_TRUNC` and `EXTRACT`
-* Using `DATE_TRUNC` to obtain the begining date of month for a `DATE`
-* Using `AVG` to find the average price
-* Casting float data types to an exact `NUMERIC` to use with the `ROUND` function
-* Using `AND` conditions to apply multiple logical rules for `WHERE` filters
-* Using `SUM CASE WHEN` to aggregate logical values similar to a COUNTIF in Excel
-* Casting `INTEGER` data types to a `NUMERIC` to avoid integer floor division errors
-
-> Step 4: View all transaction histories in the `trading.transactions` table
-
-* More advanced usage of `SUM CASE WHEN` to replicate SUMIF functionality in Excel
-* How to filter records from a `GROUP BY` result using the `HAVING` clause
-* Using CTEs and subqueries to perform the same filtering of results
-* Use a `RANK` window function to perform custom ordering for a results set
-
-> Step 5: Starting data analysis
-
-* Interpreting entity relationship diagrams (ERDs) to visualize table joins
-* Analyzing ranges of data to make sure the analysis periods are aligned
-* Perform an `INNER JOIN` to combine datasets to select columns from both tables
-* Combining CTEs and joins for step-wise queries
-* Combining multiple aggregation functions to generate larger table outputs
-
-> Steps 6-7: Planning ahead and using base tables for data analysis
-
-* Drop and create a temporary table to re-use in future SQL queries
-* Add time `INTERVAL` to a date
-* Use `ALTER` and `UPDATE` statements to manipulate an existing temporary table
-* Use a custom `WINDOW FRAME` clause to specify a sliding window for cumulative metrics
-* Use a `SUM` window function to calculate a denominator value for percentage calculations
-* Use `MAX CASE WHEN` to pivot data from long to wide
-
-> Steps 8-12: Final Case Study Scenarios
-
-* Creating simplified data scenarios to better understand each question
-* Implementing a `SUM PRODUCT` aggregation to calculate initial investments
-* Performing multiple joins to the same tables with different joining conditions
-* Multiplying many columns to generate fees based off percentages
-* Calculating hypothetical scenarios and implementing complex logic using SQL
-* Creating a complete CTE workflow to generate a reporting dataset
-* Aggregating data at multiple levels to generate multiple insights
-
-[![forthebadge](./../images/badges/go-to-previous-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/step12.md)
-[![forthebadge](./../images/badges/go-to-next-tutorial.svg)](https://github.com/datawithdanny/sql-masterclass/tree/main/course-content/the-end.md)
