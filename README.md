@@ -3,19 +3,10 @@
 ![image](https://github.com/Shailesh-python/Cryptocurrency/blob/main/sql-masterclas-banner.png)
 
 ---
-The following are my solutions to the Cryptocurrency questions in [Danny Ma's Cryptocurrency]("https://github.com/DataWithDanny/sql-masterclass")
 
 # Step 1 - Introduction
 
 # Our Crypto Case Study
-
-For this entire SQL Simplified course we will focus on our Cryptocurrency Trading SQL Case Study!
-
-## Setting the Context
-
-In our fictitious (but realistic) case study - my team of trusted data mentors from the Data With Danny team have been dabbling in the crypto markets since 2017.
-
-Our main purpose for this case study is to analyse the performance of the DWD mentors over time and to "slice and dice" the data in various ways to investigate other questions we might want answers to!
 
 ## Our Datasets
 
@@ -27,118 +18,13 @@ There are 3 data tables available to us in this schema which we can use to run o
 2. `prices`
 3. `transactions`
 
-You can inspect each dataset by copying the following code snippet below and running it directly in the SQLPad GUI - please make sure to overwrite any previous queries which are already in the SQL interface!
-
-```sql
-SELECT * FROM trading.members;
-```
-
-| member_id | first_name |    region     |
-| --------- | ---------- | ------------- |
-| c4ca42    | Danny      | Australia     |
-| c81e72    | Vipul      | United States |
-| eccbc8    | Charlie    | United States |
-| a87ff6    | Nandita    | United States |
-| e4da3b    | Rowan      | United States |
-| 167909    | Ayush      | United States |
-| 8f14e4    | Alex       | United States |
-| c9f0f8    | Abe        | United States |
-| 45c48c    | Ben        | Australia     |
-| d3d944    | Enoch      | Africa        |
-| 6512bd    | Vikram     | India         |
-| c20ad4    | Leah       | Asia          |
-| c51ce4    | Pavan      | Australia     |
-| aab323    | Sonia      | Australia     |
-<br>
-
-```sql
-SELECT TOP 5 * FROM trading.prices;
-```
-
-| ticker | market_date |  price  |  open   |  high   |   low   | volume  | change |
-| ------ | ----------- | ------- | ------- | ------- | ------- | ------- | ------ |
-| ETH    | 2021-08-29  | 3177.84 | 3243.96 | 3282.21 | 3162.79 | 582.04K | -2.04% |
-| ETH    | 2021-08-28  | 3243.90 | 3273.78 | 3284.58 | 3212.24 | 466.21K | -0.91% |
-| ETH    | 2021-08-27  | 3273.58 | 3093.78 | 3279.93 | 3063.37 | 839.54K | 5.82%  |
-| ETH    | 2021-08-26  | 3093.54 | 3228.03 | 3249.62 | 3057.48 | 118.44K | -4.17% |
-| ETH    | 2021-08-25  | 3228.15 | 3172.12 | 3247.43 | 3080.70 | 923.13K | 1.73%  |
-<br>
-
-```sql
-SELECT TOP 5 * FROM trading.transactions;
-```
-
-| txn_id | member_id | ticker |  txn_date  | txn_type | quantity | percentage_fee |      txn_time       |
-| ------ | --------- | ------ | ---------- | -------- | -------- | -------------- | ------------------- |
-|      1 | c81e72    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
-|      2 | eccbc8    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
-|      3 | a87ff6    | BTC    | 2017-01-01 | BUY      |       50 |           0.00 | 2017-01-01 00:00:00 |
-|      4 | e4da3b    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
-|      5 | 167909    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
-
-
-Note: the `TOP 5` in the above queries will return us only the first 5 rows from each dataset.
-
-It is a good practice to always `LIMIT` your queries just in case the tables are huge - you don't want to be trying to return all 5 million rows from a huge table when you are just inspecting the data for the first time!
-
-## A Note on Schemas
-
-Notice above how the "`trading.`" is included before each of our available tables.
-
-If we were to remove this - our database will be unable to find our tables.
-
-This query below will return you an error when ran:
-
-```sql
-SELECT * FROM members;
-```
-
-> relation "members" does not exist
-
-In realistic scenarios - physical tables will almost always live within a schema and we'll need to reference the schema name to run our queries properly!
-
-# Step 2 - Exploring The Members Data
-
-Let's now inspect our `trading.members` table in a bit more depth.
-
-## Table Records
-
-We can see that there are 3 columns and 14 rows in this dataset:
-
-`SELECT * FROM trading.members;`
-
-| member_id | first_name |    region      |
-| --------- | ---------- | -------------- |
-| c4ca42    | Danny      | Australia      |
-| c81e72    | Vipul      | United States  |
-| eccbc8    | Charlie    | United States  |
-| a87ff6    | Nandita    | United States  |
-| e4da3b    | Rowan      | United States  |
-| 167909    | Ayush      | United States  |
-| 8f14e4    | Alex       | United States  |
-| c9f0f8    | Abe        | United States  |
-| 45c48c    | Ben        | Australia      |
-| d3d944    | Enoch      | Africa         |
-| 6512bd    | Vikram     | India          |
-| c20ad4    | Leah       | Asia           |
-| c51ce4    | Pavan      | Australia      |
-| aab323    | Sonia      | Australia      |
-<br>
 
 ### Question 1
-
 > Show only the top 5 rows from the `trading.members` table
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT TOP 5 * FROM trading.members;
 ```
-
-</details>
-<br>
-
 | member_id | first_name |    region     |
 | --------- | ---------- | ------------- |
 | c4ca42    | Danny      | Australia     |
@@ -146,45 +32,28 @@ SELECT TOP 5 * FROM trading.members;
 | eccbc8    | Charlie    | United States |
 | a87ff6    | Nandita    | United States |
 | e4da3b    | Rowan      | United States |
-<br>
+
 
 ### Question 2
-
 > Sort all the rows in the table by `first_name` in alphabetical order and show the top 3 rows
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT TO5 3 * FROM trading.members
 ORDER BY first_name;
 ```
-
-</details>
-<br>
-
 | member_id | first_name |    region     |
 | --------- | ---------- | ------------- |
 | c9f0f8    | Abe        | United States |
 | 8f14e4    | Alex       | United States |
 | 167909    | Ayush      | United States |
-<br>
 
 ### Question 3
-
 > Which records from `trading.members` are from the United States region?
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT * FROM trading.members
 WHERE region = 'United States';
 ```
-
-</details>
-<br>
-
 | member_id | first_name |    region     |
 | --------- | ---------- | ------------- |
 | c81e72    | Vipul      | United States |
@@ -194,14 +63,10 @@ WHERE region = 'United States';
 | 167909    | Ayush      | United States |
 | 8f14e4    | Alex       | United States |
 | c9f0f8    | Abe        | United States |
-<br>
+
 
 ### Question 4
-
 > Select only the `member_id` and `first_name` columns for members who are not from Australia
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT
@@ -210,9 +75,6 @@ SELECT
 FROM trading.members
 WHERE region != 'Australia';
 ```
-
-</details>
-<br>
 
 | member_id | first_name |
 | --------- | ---------- |
@@ -226,23 +88,16 @@ WHERE region != 'Australia';
 | d3d944    | Enoch      |
 | 6512bd    | Vikram     |
 | c20ad4    | Leah       |
-<br>
 
 ### Question 5
 
 > Return the unique `region` values from the `trading.members` table and sort the output by reverse alphabetical order
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT DISTINCT region
 FROM trading.members
 ORDER BY region DESC;
 ```
-
-</details>
-<br>
 
 |    region     | 
 | ------------- |
@@ -251,36 +106,23 @@ ORDER BY region DESC;
 | Australia     |
 | Asia          |
 | Africa        |
-<br>
+
 
 ### Question 6
 
 > How many mentors are there from Australia or the United States?
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
-
 ```sql
 SELECT
   COUNT(*) AS mentor_count
 FROM trading.members
 WHERE region IN ('Australia', 'United States');
-```
-
-</details>
-<br>
 
 |  mentor_count |
 | ------------- |
 |            11 |
-<br>
 
 ### Question 7
-
 > How many mentors are not from Australia or the United States?
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT
@@ -288,21 +130,12 @@ SELECT
 FROM trading.members
 WHERE region NOT IN ('Australia', 'United States');
 ```
-
-</details>
-<br>
-
 | mentor_count |
 | ------------ |
 |            3 |
-<br>
 
 ### Question 8
-
 > How many mentors are there per region? Sort the output by regions with the most mentors to the least
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT
@@ -312,10 +145,6 @@ FROM trading.members
 GROUP BY region
 ORDER BY mentor_count DESC;
 ```
-
-</details>
-<br>
-
 |    region     | mentor_count |
 | ------------- | ------------ |
 | United States |            7 |
@@ -323,14 +152,9 @@ ORDER BY mentor_count DESC;
 | India         |            1 |
 | Africa        |            1 |
 | Asia          |            1 |
-<br>
 
 ### Question 9
-
 > How many US mentors and non US mentors are there?
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT
@@ -343,22 +167,14 @@ FROM trading.members
 GROUP BY mentor_region
 ORDER BY mentor_count DESC;
 ```
-
-</details>
-<br>
-
 | mentor_region | mentor_count |
 | ------------- | ------------ |
 | United States |            7 |
 | Non US        |            7 |
-<br>
 
 ### Question 10
 
 > How many mentors have a first name starting with a letter before `'E'`?
-
-<details>
-  <summary>Click here to reveal the solution!</summary>
 
 ```sql
 SELECT
@@ -367,87 +183,16 @@ FROM trading.members
 WHERE LEFT(first_name, 1) < 'E';
 ```
 
-</details>
-<br>
-
 | mentor_count |
 | ------------ |
 |            6 |
-<br>
 
-## Appendix
-
-> `SELECT *`
-
-In practice - always try to return specific columns which you are after and use `SELECT *` sparingly!
-
-> `TOP`
-
-Note that `TOP` is sometimes implemented as `LIMIT` in some database flavours.
-
-One must also be careful when using `TOP` with newer database tools such as BigQuery - although you will only return the number of rows you ask for, BQ is billed by the total number of rows scanned and a `TOP` will not avoid this!
-
-Best practice is to always apply `WHERE` filters on specific partitions where possible to narrow down the amount of data that must be scanned - reducing your query costs and speeding up your query execution!
-
-> `<>` or `!=` for "not equals"
 
 # Step 3 - Daily Prices
 
 Our next dataset to explore will be the `trading.prices` table which contains the daily price and volume data for the 2 cryptocurrency tickers: `ETH` and `BTC` (Ethereum and Bitcoin!)
 
-## View The Data
-
-Before we try to solve our next set of questions below - you can try viewing a few rows from the `trading.prices` dataset:
-
-Example Bitcoin price data:
-
-```sql
-SELECT TOP 5 * FROM trading.prices WHERE ticker = 'BTC' ;
-```
-
-| ticker | market_date |  price  |  open   |  high   |   low   | volume | change |
-| ------ | ----------- | ------- | ------- | ------- | ------- | ------ | ------ |
-| BTC    | 2021-08-29  | 48255.0 | 48899.7 | 49621.7 | 48101.9 | 40.96K | -1.31% |
-| BTC    | 2021-08-28  | 48897.1 | 49062.8 | 49289.4 | 48428.5 | 36.73K | -0.34% |
-| BTC    | 2021-08-27  | 49064.3 | 46830.2 | 49142.0 | 46371.5 | 62.47K | 4.77%  |
-| BTC    | 2021-08-26  | 46831.6 | 48994.4 | 49347.8 | 46360.4 | 73.79K | -4.41% |
-| BTC    | 2021-08-25  | 48994.5 | 47707.4 | 49230.2 | 47163.3 | 63.54K | 2.68%  |
-<br>
-
-Example Ethereum price data:
-
-```sql
-SELECT TOP 5 * FROM trading.prices WHERE ticker = 'ETH';
-```
-
-| ticker | market_date |  price  |  open   |  high   |   low   | volume  | change |
-| ------ | ----------- | ------- | ------- | ------- | ------- | ------- | ------ |
-| ETH    | 2021-08-29  | 3177.84 | 3243.96 | 3282.21 | 3162.79 | 582.04K | -2.04% |
-| ETH    | 2021-08-28  | 3243.90 | 3273.78 | 3284.58 | 3212.24 | 466.21K | -0.91% |
-| ETH    | 2021-08-27  | 3273.58 | 3093.78 | 3279.93 | 3063.37 | 839.54K | 5.82%  |
-| ETH    | 2021-08-26  | 3093.54 | 3228.03 | 3249.62 | 3057.48 | 118.44K | -4.17% |
-| ETH    | 2021-08-25  | 3228.15 | 3172.12 | 3247.43 | 3080.70 | 923.13K | 1.73%  |
-<br>
-
-## Data Dictionary
-
-| Column Name | Description                     |
-| ----------- | ------------------------------- |
-| ticker      | one of either BTC or ETH        |
-| market_date | the date for each record        |
-| price       | closing price at end of day     |
-| open        | the opening price               |
-| high        | the highest price for that day  |
-| low         | the lowest price for that day   |
-| volume      | the total volume traded         |
-| change      | % change price in price         |
-<br>
- 
 ## Data Exploration Questions
-
-Let's answer a few simple questions to help us better understand the `trading.prices` table.
-
-> Remember to clear all previous SQL queries from SQLPad before running each new SQL query!
 
 ### Question 1
 
@@ -455,7 +200,7 @@ Let's answer a few simple questions to help us better understand the `trading.pr
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -463,13 +208,13 @@ SELECT
 FROM trading.prices;
 ```
 
-</details>
-<br>
+
+
 
 | total_records |
 | ------------- |
 |          3404 |
-<br>
+
 
 ### Question 2
 
@@ -477,7 +222,7 @@ FROM trading.prices;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -487,14 +232,14 @@ FROM trading.prices
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker | record_count |
 | ------ | ------------ |
 | BTC    |         1702 |
 | ETH    |         1702 |
-<br>
+
 
 ### Question 3
 
@@ -502,7 +247,7 @@ GROUP BY ticker;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -511,13 +256,13 @@ SELECT
 FROM trading.prices;
 ```
 
-</details>
-<br>
+
+
 
 |  min_date  |  max_date  |
 | ---------- | ---------- |
 | 2017-01-01 | 2021-08-29 |
-<br>
+
 
 ### Question 4
 
@@ -525,7 +270,7 @@ FROM trading.prices;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -536,14 +281,14 @@ FROM trading.prices
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker |  min_date  |  max_date  |
 | ------ | ---------- | ---------- |
 | BTC    | 2017-01-01 | 2021-08-29 |
 | ETH    | 2017-01-01 | 2021-08-29 |
-<br>
+
 
 ### Question 5
 
@@ -551,7 +296,7 @@ GROUP BY ticker;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -561,19 +306,19 @@ WHERE ticker = 'BTC'
   AND market_date BETWEEN '2020-01-01' AND '2020-12-31';
 ```
 
-</details>
-<br>
+
+
 
 |        avg         |
 | ------------------ |
 | 11111.631147540984 |
-<br>
+
 
 ### Question 6
 
 > What is the monthly average of the `price` column for Ethereum in 2020? Sort the output in chronological order and also round the average price value to 2 decimal places
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -587,8 +332,8 @@ GROUP BY month_start
 ORDER BY month_start;
 ```
 
-</details>
-<br>
+
+
 
 |      month_start       | average_eth_price |
 | ---------------------- | ----------------- |
@@ -604,7 +349,7 @@ ORDER BY month_start;
 | 2020-10-01 00:00:00+00 |	375.79           |
 | 2020-11-01 00:00:00+00 |	486.73           |
 | 2020-12-01 00:00:00+00 |	622.35           |
-<br>
+
 
 
 
@@ -616,7 +361,7 @@ As you inspect the output from the following SQL query - what is your final answ
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -627,14 +372,14 @@ FROM trading.prices
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker | total_count | unique_count |
 | ------ | ----------- | ------------ |
 | BTC    |        1702 |         1702 |
 | ETH    |        1702 |         1702 |
-<br>
+
 
 ### Question 8
 
@@ -642,7 +387,7 @@ GROUP BY ticker;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -652,13 +397,13 @@ WHERE ticker = 'BTC'
   AND high > 30000;
 ```
 
-</details>
-<br>
+
+
 
 | row_count |
 | --------- |
 |       240 |
-<br>
+
 
 ### Question 9
 
@@ -666,7 +411,7 @@ WHERE ticker = 'BTC'
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -677,14 +422,14 @@ WHERE DATE_TRUNC('YEAR', market_date) = '2020-01-01'
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker | breakout_days |
 | ------ | ------------- |
 | BTC    |           207 |
 | ETH    |           200 |
-<br>
+
 
 ### Question 10
 
@@ -692,7 +437,7 @@ GROUP BY ticker;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -704,14 +449,14 @@ WHERE market_date >= '2020-01-01' AND market_date <= '2020-12-31'
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker | non_breakout_days |
 | ------ | ----------------- |
 | BTC    |               159 |
 | ETH    |               166 |
-<br>
+
 
 ### Question 11
 
@@ -719,7 +464,7 @@ GROUP BY ticker;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -739,14 +484,14 @@ WHERE market_date >= '2020-01-01' AND market_date <= '2020-12-31'
 GROUP BY ticker;
 ```
 
-</details>
-<br>
+
+
 
 | ticker | breakout_percentage | non_breakout_percentage |
 | ------ | ------------------- | ----------------------- |
 | BTC    |                0.57 |                    0.43 |
 | ETH    |                0.55 |                    0.45 |
-<br>
+
 
  
 # Step 4 - Transactions Table
@@ -775,7 +520,7 @@ ORDER BY txn_time DESC;
 | quantity       | the total quantity for each trade |
 | percentage_fee | % of total amount charged as fees |
 | txn_time       | the timestamp for each trade      |
-<br>
+
 
 ## Transactions Questions
 
@@ -787,14 +532,14 @@ Let's finish our initial data exploration with a few more questions for the `tra
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT COUNT(*) FROM trading.transactions;
 ```
 
-</details>
-<br>
+
+
 
 ### Question 2
 
@@ -802,19 +547,19 @@ SELECT COUNT(*) FROM trading.transactions;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT COUNT(DISTINCT txn_id) FROM trading.transactions;
 ```
 
-</details>
-<br>
+
+
 
 | count |
 | ----- |
 | 22918 |
-<br>
+
 
 ### Question 3
 
@@ -822,7 +567,7 @@ SELECT COUNT(DISTINCT txn_id) FROM trading.transactions;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -833,14 +578,14 @@ WHERE ticker = 'BTC'
 GROUP BY txn_type;
 ```
 
-</details>
-<br>
+
+
 
 | txn_type | transaction_count |
 | -------- | ----------------- |
 | SELL     |              2044 |
 | BUY      |             10440 |
-<br>
+
 
 ### Question 4
 
@@ -854,7 +599,7 @@ Also round the quantity columns to 2 decimal places.
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -869,8 +614,8 @@ GROUP BY txn_year, txn_type
 ORDER BY txn_year, txn_type;
 ```
 
-</details>
-<br>
+
+
 
 | txn_year | txn_type | transaction_count | total_quantity | average_quantity |
 | -------- | -------- | ----------------- | -------------- | ---------------- |
@@ -884,7 +629,7 @@ ORDER BY txn_year, txn_type;
 |     2020 | SELL     |               456 |        2301.98 |             5.05 |
 |     2021 | BUY      |              1433 |        7161.32 |             5.00 |
 |     2021 | SELL     |               293 |        1478.00 |             5.04 |
-<br>
+
 
 ### Question 5
 
@@ -892,7 +637,7 @@ ORDER BY txn_year, txn_type;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -906,8 +651,8 @@ GROUP BY calendar_month
 ORDER BY calendar_month;
 ```
 
-</details>
-<br>
+
+
 
 | calendar_month |   buy_quantity    |   sell_quantity    |    
 | -------------- | ----------------- | ------------------ |
@@ -923,7 +668,7 @@ ORDER BY calendar_month;
 | 2020-10-01     | 744.7913667867248 |   174.269279883162 |
 | 2020-11-01     | 698.0915637008526 | 163.74629299419385 |
 | 2020-12-01     | 752.4121935735661 | 212.77643601396653 |
-<br>
+
 
 ### Question 6
 
@@ -936,7 +681,7 @@ ORDER BY calendar_month;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -969,8 +714,8 @@ FROM trading.transactions
 GROUP BY member_id;
 ```
 
-</details>
-<br>
+
+
 
 | member_id |       btc_buy_qty       |     btc_sell_qty      |      eth_buy_qty       |     eth_sell_qty      |
 | --------- | ----------------------- | --------------------- | ---------------------- | --------------------- |
@@ -988,7 +733,7 @@ GROUP BY member_id;
 | c4ca42    |   4380.4429315724604872 | 1075.5626055691556454 |  4516.5972484100717280 | 1075.5626055691556454 |
 | 6512bd    |   4031.6925788360780822 | 574.78279876648434158 |  2941.2223099752008596 | 574.78279876648434158 |
 | aab323    |   3491.8873912094965336 |  916.3032786678013621 | 4373.76210149024236043 |  916.3032786678013621 |
-<br>
+
 
 ### Question 7
 
@@ -996,7 +741,7 @@ GROUP BY member_id;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -1014,8 +759,8 @@ GROUP BY member_id
 ORDER BY final_btc_holding DESC;
 ```
 
-</details>
-<br>
+
+
 
 | member_id |    final_btc_holding    |
 | --------- | ----------------------- |
@@ -1033,7 +778,7 @@ ORDER BY final_btc_holding DESC;
 | 8f14e4    |   2201.3329709306902409 |
 | c81e72    |  1626.83585271140723711 |
 | c51ce4    |   1551.6863771068051730 |
-<br>
+
 
 ### Question 8
 
@@ -1043,7 +788,7 @@ We can actually do this in 3 different ways!
 
 <details>
   <summary>Click here to reveal the `HAVING` solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -1057,12 +802,12 @@ HAVING SUM(quantity) < 500
 ORDER BY btc_sold_quantity DESC;
 ```
 
-</details>
-<br>
+
+
 
 <details>
   <summary>Click here to reveal the `CTE` solution!</summary>
-<br>
+
 
 ```sql
 WITH cte AS (
@@ -1079,12 +824,12 @@ WHERE btc_sold_quantity < 500
 ORDER BY btc_sold_quantity DESC;
 ```
 
-</details>
-<br>
+
+
 
 <details>
   <summary>Click here to reveal the `subquery` solution!</summary>
-<br>
+
 
 ```sql
 SELECT * FROM (
@@ -1100,15 +845,15 @@ WHERE btc_sold_quantity < 500
 ORDER BY btc_sold_quantity DESC;
 ```
 
-</details>
-<br>
+
+
 
 | member_id |  btc_sold_quantity  |
 | --------- | ------------------- |
 | 8f14e4    | 445.743862547520261 |
 | eccbc8    | 305.345489355233177 |
 | 45c48c    | 198.131022250011036 |
-<br>
+
 
 ### Question 9
 
@@ -1116,7 +861,7 @@ ORDER BY btc_sold_quantity DESC;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -1133,8 +878,8 @@ GROUP BY member_id
 ORDER BY total_quantity DESC;
 ```
 
-</details>
-<br>
+
+
 
 | member_id |     total_quantity      |
 | --------- | ----------------------- |
@@ -1152,7 +897,7 @@ ORDER BY total_quantity DESC;
 | 8f14e4    |   2201.3329709306902409 |
 | c81e72    |  1626.83585271140723711 |
 | c51ce4    |   1551.6863771068051730 |
-<br>
+
 
 ### Question 10
 
@@ -1160,7 +905,7 @@ ORDER BY total_quantity DESC;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 SELECT
@@ -1172,8 +917,8 @@ GROUP BY member_id
 ORDER BY buy_to_sell_ratio DESC;
 ```
 
-</details>
-<br>
+
+
 
 | member_id |  buy_to_sell_ratio   |
 | --------- | -------------------- |
@@ -1191,7 +936,7 @@ ORDER BY buy_to_sell_ratio DESC;
 | e4da3b    |  3.55762611425005570 |
 | d3d944    |  3.35445896964968774 |
 | c51ce4    |   2.3630130420937542 |
-<br>
+
 
 ### Question 11
 
@@ -1199,7 +944,7 @@ ORDER BY buy_to_sell_ratio DESC;
 
 <details>
   <summary>Click here to reveal the solution!</summary>
-<br>
+
 
 ```sql
 WITH cte_ranked AS (
@@ -1221,8 +966,8 @@ WHERE month_rank = 1
 ORDER BY sold_eth_quantity DESC;
 ```
 
-</details>
-<br>
+
+
 
 | member_id | calendar_month |  sold_eth_quantity  |
 | --------- | -------------- | ------------------- |
@@ -1266,7 +1011,7 @@ Firstly - let's see what is the range of data we have to play with!
 
 > What is the earliest and latest date of transactions for all members?
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1275,7 +1020,7 @@ SELECT
 FROM trading.transactions;
 ```
 
-</details><br>
+
 
 | earliest_date | latest_date |
 | ------------- | ----------- |
@@ -1285,7 +1030,7 @@ FROM trading.transactions;
 
 > What is the range of `market_date` values available in the prices data? 
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1294,12 +1039,12 @@ SELECT
 FROM trading.prices;
 ```
 
-</details><br>
+
 
 | earliest_date | latest_date |
 | ------------- | ----------- |
 | 2017-01-01    | 2021-08-29  |
-<br>
+
 
 ## Joining our Datasets
 
@@ -1311,7 +1056,7 @@ Let's make use of our ERD shown above to combine the `trading.transactions` tabl
 
 > Which top 3 mentors have the most Bitcoin quantity as of the 29th of August? 
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1331,14 +1076,14 @@ ORDER BY total_quantity DESC
 LIMIT 3;
 ```
 
-</details><br>
+
 
 | first_name |     total_quantity      |
 | ---------- | ----------------------- |
 | Nandita    | 4160.219869506641749735 |
 | Leah       |  4046.09089667256706404 |
 | Ayush      |  3945.19808326050497234 |
-<br>
+
 
 ## Calculating Portfolio Value
 
@@ -1348,7 +1093,7 @@ Now let's combine all 3 tables together using only strictly `INNER JOIN` so we c
 
 > What is total value of all Ethereum portfolios for each region at the end date of our analysis? Order the output by descending portfolio value 
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_latest_price AS (
@@ -1383,7 +1128,7 @@ GROUP BY members.region, cte_latest_price.price
 ORDER BY avg_ethereum_value DESC;
 ```
 
-</details><br>
+
 
 |    region     |        ethereum_value        |    avg_ethereum_value     |
 | ------------- | ---------------------------- | ------------------------- |
@@ -1392,13 +1137,13 @@ ORDER BY avg_ethereum_value DESC;
 | Asia          |  5011670.9776990206825808176 |  8933.4598532959370421432 |
 | India         |   6276426.482786365114210656 |   8036.397545181005116104 |
 | Africa        |  2183933.3382704268238606128 |  3899.8809611971907658600 |
-<br>
+
 
 ### Question 5
 
 > What is the average value of each Ethereum portfolio in each region? Sort this output in descending order
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_latest_price AS (
@@ -1427,7 +1172,7 @@ GROUP BY members.region, cte_latest_price.price
 ORDER BY avg_ethereum_value DESC;
 ```
 
-</details><br>
+
 
 |    region     |    avg_ethereum_value     |
 | ------------- | ------------------------- |
@@ -1436,13 +1181,13 @@ ORDER BY avg_ethereum_value DESC;
 | Asia          |  8933.4598532959370421432 |
 | India         |   8036.397545181005116104 |
 | Africa        |  3899.8809611971907658600 |
-<br>
+
 
 Mmm hang on a second...does the output for the above query look correct to you?
 
 Let's try again - this time we will calculate the total sum of portfolio value and then manually divide it by the total number of mentors in each region! 
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_latest_price AS (
@@ -1479,7 +1224,7 @@ FROM cte_calculations
 ORDER BY avg_ethereum_value DESC;
 ```
 
-</details><br>
+
 
 |    region     |        ethereum_value        | mentor_count |      avg_ethereum_value      |
 | ------------- | ---------------------------- | ------------ | ---------------------------- |
@@ -1488,7 +1233,7 @@ ORDER BY avg_ethereum_value DESC;
 | India         |   6276426.482786365114210656 |            1 |   6276426.482786365114210656 |
 | Asia          |  5011670.9776990206825808176 |            1 |  5011670.9776990206825808176 |
 | Africa        |  2183933.3382704268238606128 |            1 |  2183933.3382704268238606128 |
-<br>
+
 
 
 # Step 6 - Planning Ahead for Data Analysis
@@ -1531,7 +1276,7 @@ First let's create a portfolio quantity base table which summarizes our data wit
 
 **You must run the query below in order to run all following queries in this tutorial!**
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 
 ```sql
@@ -1562,7 +1307,7 @@ FROM cte_joined_data
 GROUP BY first_name, region, year_end, ticker;
 ```
 
-</details><br>
+
 
 ### Step 2
 
@@ -1570,7 +1315,7 @@ Let's take a look at our base table now to see what data we have to play with - 
 
 > Inspect the `year_end`, `ticker` and `yearly_quantity` values from our new temp table `temp_portfolio_base` for Mentor Abe only. Sort the output with ordered BTC values followed by ETH values
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 
 ```sql
@@ -1583,7 +1328,7 @@ WHERE first_name = 'Abe'
 ORDER BY ticker, year_end;
 ```
 
-</details><br>
+
 
 |  year_end  | ticker |   yearly_quantity    |
 | ---------- | ------ | -------------------- |
@@ -1595,7 +1340,7 @@ ORDER BY ticker, year_end;
 | 2018-12-31 | ETH    |  350.000100283493089 |
 | 2019-12-31 | ETH    |  464.317705594980087 |
 | 2020-12-31 | ETH    | 508.4673343549910666 |
-<br>
+
 
 We can see from the output above that the yearly quantity is exactly the total portfolio quantity values that we need - we will need to create a cumulative sum of the `yearly_quantity` column that is separate for each mentor and ticker, using the `year_end` as the ordering column.
 
@@ -1609,7 +1354,7 @@ Although we will only touch on this briefly in this course - the complete Data W
 
 > Create a cumulative sum for Abe which has an independent value for each ticker
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1629,7 +1374,7 @@ WHERE first_name = 'Abe'
 ORDER BY ticker, year_end;
 ```
 
-</details><br>
+
 
 
 |  year_end  | ticker |   yearly_quantity    |  cumulative_quantity  |
@@ -1642,7 +1387,7 @@ ORDER BY ticker, year_end;
 | 2018-12-31 | ETH    |  350.000100283493089 |  893.2121489760647394 |
 | 2019-12-31 | ETH    |  464.317705594980087 | 1357.5298545710448264 |
 | 2020-12-31 | ETH    | 508.4673343549910666 | 1865.9971889260358930 |
-<br>
+
 
 ### Step 4
 
@@ -1652,7 +1397,7 @@ We can actually `ALTER` and `UPDATE` our temp table to add in an extra column wi
 
 > Generate an additional `cumulative_quantity` column for the `temp_portfolio_base` temp table
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 -- add a column called cumulative_quantity
@@ -1671,11 +1416,11 @@ SET (cumulative_quantity) = (
 );
 ```
 
-</details><br>
+
 
 Now let's check that our updates to the temp table worked by inspecting Abe's records again!
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 -- query the updated table to check rows for Abe
@@ -1689,7 +1434,7 @@ WHERE first_name = 'Abe'
 ORDER BY ticker, year_end;
 ```
 
-</details><br>
+
 
 | year_end   | ticker |   yearly_quantity    | cumulative_quantity  |
 | ---------- | ------ | -------------------- | -------------------- |
@@ -1703,7 +1448,7 @@ ORDER BY ticker, year_end;
 | 2019-01-01 | ETH    |  464.317705594980087 |  464.317705594980087 |
 | 2020-01-01 | ETH    | 508.4673343549910666 | 508.4673343549910666 |
 | 2021-01-01 | ETH    |  223.204709336221616 |  223.204709336221616 |
-<br>
+
 
 Wait a moment....it didn't work - the cumulative and the yearly quantity is exactly the same!
 
@@ -1713,7 +1458,7 @@ We will need to create an additional temp table with our cumulative sum instead!
 
 **You must run this step for all following queries to work!**
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 DROP TABLE IF EXISTS temp_cumulative_portfolio_base;
@@ -1732,7 +1477,7 @@ SELECT
 FROM temp_portfolio_base;
 ```
 
-</details><br>
+
 
 You can make sure this step is ran by checking the outputs from this query:
 
@@ -1772,7 +1517,7 @@ Now that we've obtained our base table properly - let's start answering some of 
 
 Before running any of the solution queries below for this tutorial's questions - you can run the entire SQL prep queries directly below!
 
-<details><summary>Click here to reveal the entire data prep SQL script!</summary><br>
+<details><summary>Click here to reveal the entire data prep SQL script!</summary>
 
 ```sql
 DROP TABLE IF EXISTS temp_portfolio_base;
@@ -1817,7 +1562,7 @@ SELECT
 FROM temp_portfolio_base;
 ```
 
-</details><br>
+
 
 Here is the ERD diagram below just in case you forgot about how all the tables are joined together!
 
@@ -1829,7 +1574,7 @@ We can now inner join our `trading.prices` table (I hope you haven't forgot abou
 
 Let's also order our results by highest portfolio value to lowest rounded to 2 decimal places.
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1847,7 +1592,7 @@ GROUP BY base.first_name
 ORDER BY portfolio_value DESC;
 ```
 
-</details><br>
+
 
 | first_name | portfolio_value |
 | ---------- | --------------- |
@@ -1865,7 +1610,7 @@ ORDER BY portfolio_value DESC;
 | Alex       |     54857750.71 |
 | Vipul      |     43123911.62 |
 | Pavan      |     41764439.70 |
-<br>
+
 
 ## Question 2
 
@@ -1873,7 +1618,7 @@ ORDER BY portfolio_value DESC;
 
 Let's also perform the same ordering and rounding for this query too.
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -1891,7 +1636,7 @@ GROUP BY base.region
 ORDER BY portfolio_value DESC;
 ```
 
-</details><br>
+
 
 |    region     | portfolio_value |
 | ------------- | --------------- |
@@ -1900,7 +1645,7 @@ ORDER BY portfolio_value DESC;
 | Asia          |     18305366.24 |
 | India         |     16168831.76 |
 | Africa        |     16078915.65 |
-<br>
+
 
 ## Question 3
 
@@ -1908,7 +1653,7 @@ ORDER BY portfolio_value DESC;
 
 Let's make our percentages between 0 and 100, rounded to decimal places - order the output with the regions with highest portfolio value first and then by descending mentor contributions within each group.
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_mentor_portfolio AS (
@@ -1943,7 +1688,7 @@ FROM cte_region_portfolio
 ORDER BY region_total DESC, contribution_percentage DESC;
 ```
 
-</details><br>
+
 
 |    region     | first_name | contribution_percentage |
 | ------------- | ---------- | ----------------------- |
@@ -1961,7 +1706,7 @@ ORDER BY region_total DESC, contribution_percentage DESC;
 | Asia          | Leah       |                  100.00 |
 | Africa        | Enoch      |                  100.00 |
 | India         | Vikram     |                  100.00 |
-<br>
+
 
 ## Question 4
 
@@ -1969,7 +1714,7 @@ ORDER BY region_total DESC, contribution_percentage DESC;
 
 We can use a similar approach to question 3 - but we will need to avoid the first level of aggregation.
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_mentor_portfolio AS (
@@ -2005,7 +1750,7 @@ FROM cte_region_portfolio
 ORDER BY ticker, region, contribution_percentage DESC;
 ```
 
-</details><br>
+
 
 |    region     | first_name | ticker | contribution_percentage |
 | ------------- | ---------- | ------ | ----------------------- |
@@ -2037,7 +1782,7 @@ ORDER BY ticker, region, contribution_percentage DESC;
 | United States | Charlie    | ETH    |                   12.36 |
 | United States | Rowan      | ETH    |                   10.11 |
 | United States | Ayush      | ETH    |                    2.66 |
-<br>
+
 
 ## Bonus Question 5
 
@@ -2058,11 +1803,11 @@ The final output we wish to generate looks like this:
 | United States | Charlie    |        5 |        5 |        5 |        5 |        5 |        5 |        5 |        5 |
 | United States | Alex       |        6 |        6 |        6 |        6 |        3 |        3 |        3 |        3 |
 | United States | Vipul      |        7 |        7 |        7 |        7 |        2 |        1 |        1 |        1 |
-<br>
+
 
 Our first step is to try and create a long table first with all of our ranks for each ticker and year end.
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -2079,11 +1824,11 @@ WHERE region IN ('United States', 'Australia')
 ORDER BY year_end, region, ranking;
 ```
 
-</details><br>
+
 
 Let's now pivote this long table to a slightly easier to read wide table
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_ranks AS (
@@ -2172,7 +1917,7 @@ SELECT * FROM leah_hodl_strategy;
 | ------ | --------- | ------ | ---------- | -------- | -------- | -------------- | ------------------- |
 |     12 | c20ad4    | BTC    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
 |     26 | c20ad4    | ETH    | 2017-01-01 | BUY      |       50 |           0.30 | 2017-01-01 00:00:00 |
-<br>
+
 
 ## Required Metrics
 
@@ -2192,7 +1937,7 @@ We can calculate the first 2 questions using a single query
 > 1. The initial value of her original 50 BTC and 50 ETH purchases
 > 2. The dollar amount of fees she paid for those 2 transactions
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -2204,18 +1949,18 @@ INNER JOIN trading.prices
   AND transactions.txn_date = prices.market_date;
 ```
 
-</details><br>
+
 
 | initial_value |         fees         |
 | ------------- | -------------------- |
 |      50180.00 | 150.5400000000000000 |
-<br>
+
 
 ### Question 3
 
 > The final value of her portfolio on August 29th 2021
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -2226,7 +1971,7 @@ INNER JOIN trading.prices
 WHERE prices.market_date = '2021-08-29';
 ```
 
-</details><br>
+
 
 | final_value |
 | ----------- |
@@ -2238,7 +1983,7 @@ WHERE prices.market_date = '2021-08-29';
 
 We can actually do one better and combine all 4 metrics into a single query!
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_portfolio_values AS (
@@ -2264,12 +2009,12 @@ SELECT
 FROM cte_portfolio_values;
 ```
 
-</details><br>
+
 
 | initial_value |         fees         | final_value |    profitability    |
 | ------------- | -------------------- | ----------- | ------------------- |
 |      50180.00 | 150.5400000000000000 |  2571642.00 | 51.2483459545635711 |
-<br>
+
 
 # Step 10 - The Bull Strategy
 
@@ -2310,7 +2055,7 @@ SELECT * FROM vikram_bull_strategy LIMIT 10;
 |     63 | 6512bd    | ETH    | 2017-01-02 | BUY      | 5.04372609654009 |           0.07 | 2017-01-02 20:48:13.480413 |
 |     65 | 6512bd    | BTC    | 2017-01-02 | BUY      | 3.01276029896716 |           0.30 | 2017-01-02 21:00:49.341793 |
 |     99 | 6512bd    | ETH    | 2017-01-04 | BUY      | 1.83100404691078 |           0.30 | 2017-01-04 22:04:12.689306 |
-<br>
+
 
 ## Required Metrics
 
@@ -2331,7 +2076,7 @@ We will need to calculate the following metrics:
 
 > Calculate the total investment amount in dollars for all of Vikram's purchases and his dollar amount of fees paid
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -2343,18 +2088,18 @@ INNER JOIN trading.prices
   AND transactions.txn_date = prices.market_date;
 ```
 
-</details><br>
+
 
 |     initial_investment      |            fees             |
 | --------------------------- | --------------------------- |
 | 50730451.023400136384298882 | 128821.14163246531801672694 |
-<br>
+
 
 ### Question 3
 
 > What is the average cost per unit of BTC and ETH purchased by Vikram
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_portfolio AS (
@@ -2374,19 +2119,19 @@ SELECT
 FROM cte_portfolio;
 ```
 
-</details><br>
+
 
 | ticker |   dollar_cost_average   |
 | ------ | ----------------------- |
 | BTC    | 12190.13846337579877423 |
 | ETH    |  538.402092304626902638 |
-<br>
+
 
 ### Question 4
 
 > Calculate profitability by using final portfolio value divided by the investment amount
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_portfolio_values AS (
@@ -2406,7 +2151,7 @@ SELECT
 FROM cte_portfolio_values;
 ```
 
-</details><br>
+
 
 |    profitability     |
 | -------------------- |
@@ -2416,7 +2161,7 @@ FROM cte_portfolio_values;
 
 > Calculate Vikram's profitability split by BTC and ETH
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_ticker_portfolio_values AS (
@@ -2439,13 +2184,13 @@ SELECT
 FROM cte_ticker_portfolio_values;
 ```
 
-</details><br>
+
 
 | ticker |    profitability     |
 | ------ | -------------------- |
 | BTC    |  3.95852763649714995 |
 | ETH    | 5.902354477110731653 |
-<br>
+
 
 # Step 11 - The Trader Strategy
 
@@ -2491,7 +2236,7 @@ SELECT * FROM nandita_trading_strategy LIMIT 10;
 |     77 | a87ff6    | BTC    | 2017-01-03 | BUY      | 3.80769453794553 |           0.30 | 2017-01-03 12:30:20.779105 |
 |     89 | a87ff6    | BTC    | 2017-01-04 | BUY      | 5.68677206948404 |           0.00 | 2017-01-04 08:13:07.752195 |
 |     93 | a87ff6    | BTC    | 2017-01-04 | BUY      | 8.13772499730359 |           0.30 | 2017-01-04 12:25:48.367139 |
-<br>
+
 
 ## Final Evaluation Metrics
 
@@ -2521,7 +2266,7 @@ We also want to calculate the difference if Nandita didn't sell any of her crypt
 > * Purchase fees
 > * Dollar cost average of purchases
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_purchases AS (
@@ -2548,13 +2293,13 @@ SELECT
 FROM cte_purchases;
 ```
 
-</details><br>
+
 
 | ticker | purchase_count |    purchase_quantity    |      initial_investment      |        purchase_fees         |    dollar_cost_average    |
 | ------ | -------------- | ----------------------- | ---------------------------- | ---------------------------- | ------------------------- |
 | BTC    |            954 | 5023.705687783492459935 | 63735345.6973630892576024850 | 162919.943377863222128081502 | 12686.9187126851255182628 |
 | ETH    |            756 |   3822.0371970017654265 |   2287096.578215583047801140 |    5783.32678170688531189239 |    598.397257883758534604 |
-<br>
+
 
 ### Question 2
 
@@ -2565,7 +2310,7 @@ FROM cte_purchases;
 > * Sales fees
 > * Average selling price
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_sales AS (
@@ -2592,19 +2337,19 @@ SELECT
 FROM cte_sales;
 ```
 
-</details><br>
+
 
 | ticker | sales_count |    sales_quantity    |       gross_revenue        |         sales_fees         |  average_selling_price  |
 | ------ | ----------- | -------------------- | -------------------------- | -------------------------- | ----------------------- |
 | BTC    |         167 | 863.4858182768507102 | 10975745.05336688201117242 | 29522.09286188312984442411 | 12710.97315213559195557 |
 | ETH    |          70 | 318.1506358514526923 |  172591.915512909206341725 |   447.93810830446683009024 |  542.484898862480594053 |
-<br>
+
 
 ### Question 3
 
 > What is Nandita's final BTC and ETH portfolio value and quantity?
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_adjusted_transactions AS (
@@ -2631,13 +2376,13 @@ WHERE prices.market_date = '2021-08-29'
 GROUP BY transactions.ticker;
 ```
 
-</details><br>
+
 
 | ticker |     final_quantity      |     final_portfolio_value     |
 | ------ | ----------------------- | ----------------------------- |
 | BTC    | 4160.219869506641749735 | 200751409.8030429976334624250 |
 | ETH    |   3503.8865611503127342 |   11134790.869485909819250128 |
-<br>
+
 
 ### Question 4 & 5 (bonus!)
 
@@ -2645,7 +2390,7 @@ GROUP BY transactions.ticker;
 
 We will try to minimise how many times we access the temp table `nandita_trading_strategy` to optimise our query performance!
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_portfolio AS (
@@ -2720,13 +2465,13 @@ SELECT
 FROM cte_metrics;
 ```
 
-</details><br>
+
 
 | ticker |     final_portfolio_value     |  actual_profitability   | theoretical_profitability |    dollar_cost_average    |  average_selling_price  |       sales_revenue        |        purchase_fees         |         sales_fees         |      initial_investment      |    purchase_quantity    |    sales_quantity    | purchase_transactions | sales_transactions |
 | ------ | ----------------------------- | ----------------------- | ------------------------- | ------------------------- | ----------------------- | -------------------------- | ---------------------------- | -------------------------- | ---------------------------- | ----------------------- | -------------------- | --------------------- | ------------------ |
 | BTC    | 200751409.8030429976334624250 | 3.318954506414827841503 |   3.800967820444996477195 | 12686.9187126851255182628 | 12710.97315213559195557 | 10975745.05336688201117242 | 162919.943377863222128081502 | 29522.09286188312984442411 | 63735345.6973630892576024850 | 5023.705687783492459935 | 863.4858182768507102 |                   954 |                167 |
 | ETH    |   11134790.869485909819250128 |  4.94126554503705553061 |    5.30805715638391209991 |    598.397257883758534604 |  542.484898862480594053 |  172591.915512909206341725 |    5783.32678170688531189239 |   447.93810830446683009024 |   2287096.578215583047801140 |   3822.0371970017654265 | 318.1506358514526923 |                   756 |                 70 |
-<br>
+
 
 # Step 12 - Final Case Study Questions
 
@@ -2747,7 +2492,7 @@ To finish up our entire cryptocurrency case study - let's now calculate exactly 
 * Actual Profitability (final portfolio value + gross sales revenue - purchase fees - sales fees) / initial investment amount
 * Theoretical Profitability (final portfolio value with no sales - purchase fees) / initial investment amount
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 CREATE TEMP TABLE mentor_performance AS
@@ -2840,7 +2585,7 @@ SELECT
 FROM cte_metrics;
 ```
 
-</details><br>
+
 
 Make sure to checkout the results from the temp table by running a `SELECT` query before tackling the following questions!
 
@@ -2880,13 +2625,13 @@ SELECT * FROM mentor_performance;
 | Ayush      | United States | BTC    |  190375533.507735667440266700 |  3.60665921157546573899 |    3.94587234371446856760 |  12221.424291634983319324 |  11627.47349802419417012 |   5849092.67497492474683032 |  137094.21663401017780783864 | 15782.14185896643545309336 |  54363813.801684160086909672 |  4448.23880624893711454 |  503.0407229884321422 |                   879 |                 95 |
 | Alex       | United States | BTC    |   106225322.51226045757462950 |  3.17134902464366229781 |    3.64732289428635720234 |   13221.31584224600059279 |   10912.7808704054692250 |    4864305.0963092239886611 |   86273.62341244515836663134 |   12991.807119280435744693 |   34997838.87410784294077066 |   2647.0768334782105019 |   445.743862547520261 |                   534 |                 84 |
 | Abe        | United States | BTC    |   179533509.46040851816270350 |  3.45022907603633744257 |    4.02573821957975606285 |   11978.89286334087078326 |  11297.72474955164239817 |   9629772.49687926822047538 |  142276.80367018421615985439 | 24216.72648756990733881614 |   54778040.60600280511777383 |   4572.8800842388871361 |  852.3638794847991004 |                   900 |                171 |
-<br>
+
 
 ## Question 1
 
 > Which mentors have the greatest actual profitability for each ticker?
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_ranks AS (
@@ -2901,19 +2646,19 @@ SELECT * FROM cte_ranks
 WHERE profitability_rank = 1;
 ```
 
-</details><br>
+
 
 | first_name | ticker |  actual_profitability  | profitability_rank |
 | ---------- | ------ | ---------------------- | ------------------ |
 | Charlie    | BTC    | 3.72521619894663216642 |                  1 |
 | Abe        | ETH    | 6.30636732390684560266 |                  1 |
-<br>
+
 
 ## Question 2
 
 > Which mentors have the greatest difference in actual vs theoretical profitability for each ticker?
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 WITH cte_ranks AS (
@@ -2931,19 +2676,19 @@ SELECT * FROM cte_ranks
 WHERE difference_rank = 1;
 ```
 
-</details><br>
+
 
 | first_name | ticker |       difference       | difference_rank |
 | ---------- | ------ | ---------------------- | --------------- |
 | Pavan      | BTC    | 1.23276774490555239230 |               1 |
 | Ayush      | ETH    | 3.12921723200526049267 |               1 |
-<br>
+
 
 ## Question 3
 
 > What is the total amount of sales revenue made by all mentors for each region? (combined BTC and ETH)
 
-<details><summary>Click here to reveal the solution!</summary><br>
+
 
 ```sql
 SELECT
@@ -2954,7 +2699,7 @@ GROUP BY region
 ORDER BY total_sales DESC;
 ```
 
-</details><br>
+
 
 |    region     |         total_sales          |
 | ------------- | ---------------------------- |
@@ -2963,13 +2708,11 @@ ORDER BY total_sales DESC;
 | Asia          | 13570583.1975923260102011970 |
 | Africa        |   9598208.677428648539439794 |
 | India         |   7234158.329279646489705110 |
-<br>
+
 
 ## Question 4
 
 > What is the average actual profitability for each region for each ticker?
-
-<details><summary>Click here to reveal the solution!</summary><br>
 
 ```sql
 SELECT
@@ -2980,8 +2723,6 @@ FROM mentor_performance
 GROUP BY region, ticker
 ORDER BY ticker, avg_profitability DESC;
 ```
-
-</details><br>
 
 |    region     | ticker |    avg_profitability    |
 | ------------- | ------ | ----------------------- |
@@ -2995,13 +2736,11 @@ ORDER BY ticker, avg_profitability DESC;
 | India         | ETH    |  4.31181306610612708721 |
 | Asia          | ETH    | 4.270686580003484588095 |
 | Africa        | ETH    | 2.927688747446586597299 |
-<br>
+
 
 ## Question 5
 
 > Which mentors have the largest initial investment in each ticker?
-
-<details><summary>Click here to reveal the solution!</summary><br>
 
 ```sql
 WITH cte_rank AS (
@@ -3015,14 +2754,10 @@ FROM mentor_performance
 SELECT * FROM cte_rank
 WHERE investment_rank = 1;
 ```
-
-</details><br>
-
 | first_name | ticker |     initial_investment      | investment_rank |
 | ---------- | ------ | --------------------------- | --------------- |
 | Leah       | BTC    | 64922183.350145074994503074 |               1 |
 | Vipul      | ETH    | 2900193.5795488220132164898 |               1 |
-<br>
 
  ---
  
